@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta-name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Dream Planet – Google Earth Vision</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@300;400;500;700&display=swap" rel="stylesheet">
+
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        /* ---------- GLOBAL ---------- */
+        body {
+            margin: 0;
+            font-family: "Google Sans", Arial, sans-serif;
+            background: #000;
+            color: #fff;
+        }
+
+        h1, h2 {
+            font-weight: 600;
+            color: #47c0ff;
+        }
+
+        p {
+            line-height: 1.6;
+            color: #ddd;
+        }
+
+        /* ---------- GOOGLE HEADER ---------- */
+        header {
+            padding: 35px 20px;
+            text-align: center;
+            background: #000;
+            border-bottom: 1px solid #222;
+        }
+
+        header img {
+            width: 130px;
+            margin-bottom: 10px;
+        }
+
+        /* ---------- SECTION ---------- */
+        .section {
+            padding: 40px 20px;
+            max-width: 1050px;
+            margin: auto;
+        }
+
+        .card {
+            background: #111;
+            border-radius: 18px;
+            padding: 25px;
+            box-shadow: 0 4px 18px rgba(255,255,255,0.06);
+            margin-top: 25px;
+        }
+
+        /* ---------- GRAPHS ---------- */
+        canvas {
+            width: 100% !important;
+            max-height: 380px;
+        }
+
+        /* ---------- FOOTER ---------- */
+        footer {
+            text-align: center;
+            padding: 25px 0;
+            margin-top: 40px;
+            border-top: 1px solid #222;
+        }
+
+        /* ---------- SOLAR SYSTEM ---------- */
+        .solar-system-container {
+            display: flex;
+            justify-content: center;
+            padding: 40px 0;
+            background: radial-gradient(circle, #00111a, #000);
+        }
+
+        .solar-system {
+            width: 450px;
+            height: 450px;
+            position: relative;
+        }
+
+        .sun {
+            width: 90px;
+            height: 90px;
+            background: radial-gradient(circle, #ffcc00, #ff6600);
+            border-radius: 50%;
+            position: absolute;
+            top: 180px;
+            left: 180px;
+            box-shadow: 0 0 40px #ff8c00;
+        }
+
+        .orbit {
+            position: absolute;
+            border: 1px solid rgba(255,255,255,0.2);
+            border-radius: 50%;
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .planet {
+            width: 22px;
+            height: 22px;
+            background: #47c0ff;
+            border-radius: 50%;
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .jupiter {
+            width: 36px;
+            height: 36px;
+            background: #ff5733;
+        }
+
+        /* ---------- QUIZ ---------- */
+        #quizContainer {
+            background: #111;
+            padding: 25px;
+            border-radius: 18px;
+            box-shadow: 0 4px 18px rgba(255,255,255,0.06);
+        }
+
+        button {
+            padding: 12px 22px;
+            background: #47c0ff;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            cursor: pointer;
+            color: black;
+            margin-top: 10px;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<!-- GOOGLE HEADER -->
+<header>
+    <img src="https://www.google.com/images/branding/googlelogo/2x/googlelogo_light_color_92x30dp.png">
+    <h1>A Dream Planet</h1>
+    <p>Google Vision for Culture, Equality & Human Harmony</p>
+</header>
+
+<!-- SOLAR SYSTEM -->
+<section class="solar-system-container">
+    <div class="solar-system">
+
+        <div class="sun"></div>
+
+        <div class="orbit" style="width:160px; height:160px; top:145px; left:145px;">
+            <div class="planet" style="background:#f6d55c;"></div>
+        </div>
+
+        <div class="orbit" style="width:240px; height:240px; top:105px; left:105px; animation-duration: 25s;">
+            <div class="planet" style="background:#47c0ff;"></div>
+        </div>
+
+        <div class="orbit" style="width:330px; height:330px; top:60px; left:60px; animation-duration: 32s;">
+            <div class="planet jupiter"></div>
+        </div>
+
+    </div>
+</section>
+
+<!-- INTRO -->
+<section class="section">
+    <div class="card">
+        <h2>🌍 Introduction</h2>
+        <p>A Dream Planet imagines a peaceful, equal, and sustainable world powered by knowledge, empathy, and cultural unity.</p>
+    </div>
+</section>
+
+<!-- WOMEN PARTICIPATION -->
+<section class="section">
+    <div class="card">
+        <h2>👩 Women Participation</h2>
+        <canvas id="womenParticipation"></canvas>
+    </div>
+</section>
+
+<!-- FEMALE FETICIDE -->
+<section class="section">
+    <div class="card">
+        <h2>🚫 Female Feticide</h2>
+        <canvas id="femaleFeticide"></canvas>
+    </div>
+</section>
+
+<!-- CULTURE -->
+<section class="section">
+    <div class="card">
+        <h2>🌱 Cultural Sustainability</h2>
+        <canvas id="cultureSustain"></canvas>
+    </div>
+</section>
+
+<!-- EQUALITY -->
+<section class="section">
+    <div class="card">
+        <h2>⚖ Equality</h2>
+        <canvas id="equalStructure"></canvas>
+    </div>
+</section>
+
+<!-- EDUCATION -->
+<section class="section">
+    <div class="card">
+        <h2>📘 Education</h2>
+        <canvas id="educationSystem"></canvas>
+    </div>
+</section>
+
+<!-- QUIZ -->
+<section class="section" id="quizSection">
+    <div class="card" id="quizContainer">
+        <h2>📝 Quiz – Test Your Knowledge</h2>
+        <form id="quizForm">
+
+            <ol>
+                <li>
+                    Women's participation ideally reaches:
+                    <br><input type="radio" name="q1" value="100"> 100%
+                    <br><input type="radio" name="q1" value="65"> 65%
+                </li><br>
+
+                <li>
+                    Female feticide ideally becomes:
+                    <br><input type="radio" name="q2" value="0"> 0%
+                </li><br>
+
+                <li>
+                    Cultural sustainability ideally:
+                    <br><input type="radio" name="q3" value="95"> 95%
+                </li><br>
+
+                <li>
+                    Equality index ideal:
+                    <br><input type="radio" name="q4" value="100"> 100%
+                </li><br>
+
+                <li>
+                    Ideal education access:
+                    <br><input type="radio" name="q5" value="100"> 100%
+                </li><br>
+
+                <li>
+                    Website theme:
+                    <br><input type="radio" name="q6" value="dark"> Dark
+                </li><br>
+
+                <li>
+                    Solar system represents:
+                    <br><input type="radio" name="q7" value="harmony"> Harmony
+                </li><br>
+
+                <li>
+                    Heading color:
+                    <br><input type="radio" name="q8" value="blue"> Light blue
+                </li><br>
+
+                <li>
+                    Key goal:
+                    <br><input type="radio" name="q9" value="unity"> Unity & equality
+                </li><br>
+
+                <li>
+                    Dream Planet wants:
+                    <br><input type="radio" name="q10" value="peace"> Peace & sustainability
+                </li><br>
+
+            </ol>
+
+            <button type="button" onclick="checkQuiz()">Submit</button>
+        </form>
+
+        <h3 id="quizResult" style="margin-top:20px; color:#00ff99;"></h3>
+    </div>
+</section>
+
+<footer>
+    <p>© 2025 Google – A Dream Planet Project</p>
+</footer>
+
+<!-- ============= CHARTS + QUIZ SCRIPT ============= -->
+<script>
+new Chart(document.getElementById('womenParticipation'), {
+    type: 'line',
+    data: {
+        labels: ['1980', '2000', '2020', '2025', 'Future'],
+        datasets: [{
+            label: 'Women Participation (%)',
+            data: [20, 35, 55, 65, 100],
+            borderColor: '#47c0ff',
+            backgroundColor: 'rgba(71,192,255,0.3)',
+            fill: true,
+            tension: 0.4
+        }]
+    }
+});
+
+new Chart(document.getElementById('femaleFeticide'), {
+    type: 'bar',
+    data: {
+        labels: ['1990', '2000', '2010', '2025', 'Future'],
+        datasets: [{
+            label: 'Female Feticide (%)',
+            data: [60, 45, 30, 15, 0],
+            backgroundColor: ['#ff3333','#ffaa33','#47c0ff','#3366ff','#00ff99']
+        }]
+    }
+});
+
+new Chart(document.getElementById('cultureSustain'), {
+    type: 'line',
+    data: {
+        labels: ['1980','2000','2020','2025','Future'],
+        datasets: [{
+            label: 'Cultural Sustainability (%)',
+            data: [80,60,50,55,95],
+            borderColor: '#33ffcc',
+            backgroundColor:'rgba(51,255,204,0.3)',
+            fill: true
+        }]
+    }
+});
+
+new Chart(document.getElementById('equalStructure'), {
+    type: 'bar',
+    data: {
+        labels: ['1980','2000','2020','2025','Future'],
+        datasets: [{
+            label: 'Equality (%)',
+            data: [30,45,60,70,100],
+            backgroundColor:['#ffdd00','#ff8800','#47c0ff','#33dd99','#00ff99']
+        }]
+    }
+});
+
+new Chart(document.getElementById('educationSystem'), {
+    type: 'line',
+    data: {
+        labels: ['1980','2000','2020','2025','Future'],
+        datasets: [{
+            label: 'Education Access (%)',
+            data: [40,55,70,80,100],
+            borderColor:'#ffdd33',
+            backgroundColor:'rgba(255,221,51,0.3)',
+            fill: true
+        }]
+    }
+});
+
+/* ---------- QUIZ ---------- */
+function checkQuiz() {
+    const answers = {q1:"100",q2:"0",q3:"95",q4:"100",q5:"100",q6:"dark",q7:"harmony",q8:"blue",q9:"unity",q10:"peace"};
+    let score = 0;
+
+    for (let q in answers) {
+        let a = document.querySelector(`input[name="${q}"]:checked`);
+        if (a && a.value === answers[q]) score++;
+    }
+
+    document.getElementById("quizResult").innerHTML =
+        `You scored <strong>${score}/10</strong> ⭐`;
+}
+</script>
+
+</body>
+</html>
