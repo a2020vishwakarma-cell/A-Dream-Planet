@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta-name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>A Dream Planet Earth – Culture & Community</title>
+
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background: #000000; /* Black background */
+            color: #ffffff; /* White text */
+        }
+
+        header {
+            background: #000000;
+            padding: 40px 20px;
+            text-align: center;
+            border-bottom: 1px solid #333;
+        }
+
+        .section {
+            padding: 40px 20px;
+            max-width: 1000px;
+            margin: auto;
+        }
+
+        h2 {
+            color: #47c0ff; /* Light blue headers */
+        }
+
+        .graph-box {
+            background: #111;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 2px 12px rgba(255,255,255,0.1);
+            margin: 20px 0;
+        }
+
+        canvas {
+            width: 100% !important;
+            max-height: 400px;
+        }
+
+        footer {
+            background: #000;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+            border-top: 1px solid #333;
+        }
+
+        /* ============ SOLAR SYSTEM CSS ============ */
+        .solar-system-container {
+            display: flex;
+            justify-content: center;
+            padding: 40px 0;
+            background: radial-gradient(circle, #00111a, #000);
+        }
+
+        .solar-system {
+            width: 450px;
+            height: 450px;
+            position: relative;
+            border-radius: 50%;
+        }
+
+        .sun {
+            width: 90px;
+            height: 90px;
+            background: radial-gradient(circle, #ffcc00, #ff6600);
+            border-radius: 50%;
+            position: absolute;
+            top: 180px;
+            left: 180px;
+            box-shadow: 0 0 40px #ff8c00;
+        }
+
+        .orbit {
+            position: absolute;
+            border: 1px dashed rgba(255,255,255,0.4);
+            border-radius: 50%;
+            animation: rotate 20s linear infinite;
+        }
+
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to   { transform: rotate(360deg); }
+        }
+
+        .planet {
+            width: 20px;
+            height: 20px;
+            background: #47c0ff;
+            border-radius: 50%;
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .planet.jupiter {
+            width: 35px;
+            height: 35px;
+            background: #ff5733;
+        }
+    </style>
+</head>
+
+<body>
+
+<!-- 🌞 SOLAR SYSTEM FIRST -->
+<section class="solar-system-container">
+    <div class="solar-system">
+
+        <div class="sun"></div>
+
+        <!-- Orbit 1 -->
+        <div class="orbit" style="width:160px; height:160px; top:145px; left:145px;">
+            <div class="planet" style="background:#f6d55c;"></div>
+        </div>
+
+        <!-- Orbit 2 -->
+        <div class="orbit" style="width:240px; height:240px; top:105px; left:105px; animation-duration: 25s;">
+            <div class="planet" style="background:#47c0ff;"></div>
+        </div>
+
+        <!-- Orbit 3 -->
+        <div class="orbit" style="width:330px; height:330px; top:60px; left:60px; animation-duration: 32s;">
+            <div class="planet jupiter"></div>
+        </div>
+
+    </div>
+</section>
+
+<header>
+    <h1>A Dream Planet Earth</h1>
+    <p>Culture, Equality & Sustainable Communities</p>
+</header>
+
+<!-- INTRO -->
+<section class="section">
+    <h2>🌐 Introduction</h2>
+    <p>
+        Dream Planet Earth imagines a peaceful, equal, and sustainable world. 
+        Below are key indicators that compare the past, present, and ideal future 
+        conditions of humanity.
+    </p>
+</section>
+
+<!-- WOMEN PARTICIPATION -->
+<section class="section">
+    <h2>👩 Participation of Women in Society</h2>
+    <p>Women's involvement in leadership, education, and employment continues to rise.</p>
+
+    <div class="graph-box">
+        <canvas id="womenParticipation"></canvas>
+    </div>
+</section>
+
+<!-- FEMALE FETICIDE -->
+<section class="section">
+    <h2>🚫 Female Feticide / Sex-Selective Abortion</h2>
+    <p>The rate of girl child abortion has dropped greatly, but the ideal future removes it completely.</p>
+
+    <div class="graph-box">
+        <canvas id="femaleFeticide"></canvas>
+    </div>
+</section>
+
+<!-- CULTURE SUSTAINABILITY -->
+<section class="section">
+    <h2>🌱 Sustainability of Culture</h2>
+    <p>Languages, art, and traditions must be preserved for future generations.</p>
+
+    <div class="graph-box">
+        <canvas id="cultureSustain"></canvas>
+    </div>
+</section>
+
+<!-- EQUAL SOCIAL STRUCTURE -->
+<section class="section">
+    <h2>⚖ Equal Social Structure</h2>
+    <p>Society must move toward fairness for all—free from discrimination or bias.</p>
+
+    <div class="graph-box">
+        <canvas id="equalStructure"></canvas>
+    </div>
+</section>
+
+<!-- EDUCATION SYSTEM -->
+<section class="section">
+    <h2>📘 Education System – Past, Present & Future</h2>
+    <p>A modern, accessible, equal education system is key to a peaceful future.</p>
+
+    <div class="graph-box">
+        <canvas id="educationSystem"></canvas>
+    </div>
+</section>
+
+<!-- CONCLUSION -->
+<section class="section">
+    <h2>🔮 Conclusion</h2>
+    <p>
+        A Dream Planet Earth is a world where every person has equal rights, equal opportunities, 
+        and equal respect. Culture is preserved, education is accessible, and communities are strong.
+    </p>
+    <p>
+        Just like the solar system moves in harmony, humanity too should revolve around 
+        peace, unity, and sustainability.
+    </p>
+</section>
+
+<footer>
+    <p>Dream Planet Earth – Imagining a Better Tomorrow</p>
+</footer>
+
+<!-- ========================================================= -->
+<!-- ===================== QUIZ SECTION ======================= -->
+<!-- ========================================================= -->
+
+<section class="section" id="quizSection">
+    <h2>📝 Quiz – Test Your Knowledge</h2>
+    <p>Answer the following 10 questions based on the information above!</p>
+
+    <div id="quizContainer" style="background:#111; padding:20px; border-radius:12px;">
+        
+        <form id="quizForm">
+
+            <ol>
+                <li>
+                    <p>Women's participation ideally reaches what percentage in the future?</p>
+                    <input type="radio" name="q1" value="65"> 65%<br>
+                    <input type="radio" name="q1" value="100"> 100%<br>
+                    <input type="radio" name="q1" value="35"> 35%
+                </li><br>
+
+                <li>
+                    <p>Female feticide ideally becomes:</p>
+                    <input type="radio" name="q2" value="30"> 30%<br>
+                    <input type="radio" name="q2" value="0"> 0%<br>
+                    <input type="radio" name="q2" value="45"> 45%
+                </li><br>
+
+                <li>
+                    <p>Cultural sustainability in the ideal future is:</p>
+                    <input type="radio" name="q3" value="50"> 50%<br>
+                    <input type="radio" name="q3" value="95"> 95%<br>
+                    <input type="radio" name="q3" value="60"> 60%
+                </li><br>
+
+                <li>
+                    <p>The equality index in the ideal future is:</p>
+                    <input type="radio" name="q4" value="70"> 70%<br>
+                    <input type="radio" name="q4" value="100"> 100%<br>
+                    <input type="radio" name="q4" value="60"> 60%
+                </li><br>
+
+                <li>
+                    <p>The education system ideally reaches what percentage?</p>
+                    <input type="radio" name="q5" value="80"> 80%<br>
+                    <input type="radio" name="q5" value="100"> 100%<br>
+                    <input type="radio" name="q5" value="40"> 40%
+                </li><br>
+
+                <li>
+                    <p>What is the background theme of Dream Planet Earth?</p>
+                    <input type="radio" name="q6" value="light"> Light theme<br>
+                    <input type="radio" name="q6" value="dark"> Dark / Black theme<br>
+                    <input type="radio" name="q6" value="green"> Green nature theme
+                </li><br>
+
+                <li>
+                    <p>The solar system animation represents:</p>
+                    <input type="radio" name="q7" value="chaos"> Chaos<br>
+                    <input type="radio" name="q7" value="harmony"> Harmony & unity<br>
+                    <input type="radio" name="q7" value="games"> Games
+                </li><br>
+
+                <li>
+                    <p>Which color is frequently used for headings?</p>
+                    <input type="radio" name="q8" value="red"> Red<br>
+                    <input type="radio" name="q8" value="blue"> Light Blue (#47c0ff)<br>
+                    <input type="radio" name="q8" value="yellow"> Yellow
+                </li><br>
+
+                <li>
+                    <p>What is one key goal mentioned?</p>
+                    <input type="radio" name="q9" value="division"> Divide people into groups<br>
+                    <input type="radio" name="q9" value="unity"> Unity & equality<br>
+                    <input type="radio" name="q9" value="war"> War & conflict
+                </li><br>
+
+                <li>
+                    <p>Dream Planet Earth imagines a world filled with:</p>
+                    <input type="radio" name="q10" value="inequality"> Inequality<br>
+                    <input type="radio" name="q10" value="peace"> Peace & sustainability<br>
+                    <input type="radio" name="q10" value="pollution"> Pollution
+                </li><br>
+
+            </ol>
+
+            <button type="button" onclick="checkQuiz()" 
+                    style="padding:10px 20px; background:#47c0ff; border:none; border-radius:6px; cursor:pointer; color:black; font-weight:bold;">
+                Submit Quiz
+            </button>
+
+        </form>
+
+        <h3 id="quizResult" style="margin-top:20px; color:#00ff99;"></h3>
+    </div>
+</section>
+
+<script>
+/* ===================== WOMEN PARTICIPATION ===================== */
+new Chart(document.getElementById('womenParticipation'), {
+    type: 'line',
+    data: {
+        labels: ['1980', '2000', '2020', '2025', 'Future (Ideal)'],
+        datasets: [{
+            label: 'Women Participation (%)',
+            data: [20, 35, 55, 65, 100],
+            borderColor: '#47c0ff',
+            backgroundColor: 'rgba(71,192,255,0.3)',
+            fill: true,
+            tension: 0.4
+        }]
+    },
+    options: { responsive: true }
+});
+
+/* ===================== FEMALE FETICIDE ===================== */
+new Chart(document.getElementById('femaleFeticide'), {
+    type: 'bar',
+    data: {
+        labels: ['1990', '2000', '2010', '2025', 'Future (Ideal)'],
+        datasets: [{
+            label: 'Female Feticide Rate (%)',
+            data: [60, 45, 30, 15, 0],
+            backgroundColor: ['#ff3333', '#ffaa33', '#47c0ff', '#3366ff', '#00ff99']
+        }]
+    },
+    options: { responsive: true }
+});
+
+/* ===================== CULTURE SUSTAINABILITY ===================== */
+new Chart(document.getElementById('cultureSustain'), {
+    type: 'line',
+    data: {
+        labels: ['1980', '2000', '2020', '2025', 'Future (Ideal)'],
+        datasets: [{
+            label: 'Cultural Sustainability (%)',
+            data: [80, 60, 50, 55, 95],
+            borderColor: '#33ffcc',
+            backgroundColor: 'rgba(51,255,204,0.3)',
+            fill: true,
+            tension: 0.4
+        }]
+    },
+    options: { responsive: true }
+});
+
+/* ===================== EQUAL SOCIAL STRUCTURE ===================== */
+new Chart(document.getElementById('equalStructure'), {
+    type: 'bar',
+    data: {
+        labels: ['1980', '2000', '2020', '2025', 'Future (Ideal)'],
+        datasets: [{
+            label: 'Equality Index (%)',
+            data: [30, 45, 60, 70, 100],
+            backgroundColor: ['#ffdd00', '#ff8800', '#47c0ff', '#33dd99', '#00ff99']
+        }]
+    },
+    options: { responsive: true }
+});
+
+/* ===================== EDUCATION SYSTEM ===================== */
+new Chart(document.getElementById('educationSystem'), {
+    type: 'line',
+    data: {
+        labels: ['1980', '2000', '2020', '2025', 'Future (Ideal)'],
+        datasets: [{
+            label: 'Education Quality & Access (%)',
+            data: [40, 55, 70, 80, 100],
+            borderColor: '#ffdd33',
+            backgroundColor: 'rgba(255,221,51,0.3)',
+            fill: true,
+            tension: 0.4
+        }]
+    },
+    options: { responsive: true }
+});
+
+/* ===================== QUIZ CHECK FUNCTION ===================== */
+function checkQuiz() {
+    const answers = {
+        q1: "100",
+        q2: "0",
+        q3: "95",
+        q4: "100",
+        q5: "100",
+        q6: "dark",
+        q7: "harmony",
+        q8: "blue",
+        q9: "unity",
+        q10: "peace"
+    };
+
+    let score = 0;
+    for (let q in answers) {
+        const userAnswer = document.querySelector(`input[name="${q}"]:checked`);
+        if (userAnswer && userAnswer.value === answers[q]) {
+            score++;
+        }
+    }
+
+    document.getElementById("quizResult").innerHTML = 
+        `You scored <strong>${score}/10</strong>!`;
+}
+</script>
+
+</body>
+</html>
